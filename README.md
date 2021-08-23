@@ -2,7 +2,7 @@ John Mitchell Villanueva - PulseId Exam
 ==
 Notes
 --
-Once you run the API server, it will automatically create two tables in the database and a default admin user (username: pulseid, password: qwer1234)
+Once you run the API server, it will automatically create two tables in the database and add a default admin user (username: pulseid, password: qwer1234)
 ```
 admin
 client_tokens 
