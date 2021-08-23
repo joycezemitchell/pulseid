@@ -1,0 +1,121 @@
+definitions:
+  admin.Admin:
+    properties:
+      id:
+        type: integer
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+  admin.RequestToken:
+    properties:
+      id:
+        type: integer
+      token:
+        type: string
+      username:
+        type: string
+    type: object
+  client.Client:
+    properties:
+      created_at:
+        type: string
+      id:
+        type: integer
+      status:
+        type: string
+      token:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  client.ValidateToken:
+    properties:
+      created_at:
+        type: string
+      id:
+        type: integer
+      status:
+        type: string
+      updated_at:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: This is an Pulseid API Documentation.
+  title: Pulseid API
+  version: "1.0"
+paths:
+  /getalltokens/:
+    get:
+      consumes:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/client.Client'
+            type: array
+      security:
+      - ApiKeyAuth: []
+      summary: Get all client invitation token
+  /login/:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Admin Data
+        in: body
+        name: admin
+        required: true
+        schema:
+          $ref: '#/definitions/admin.Admin'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/admin.RequestToken'
+      summary: Retrieves admin token based on username and password
+  /requesttoken/:
+    post:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/client.Client'
+      security:
+      - ApiKeyAuth: []
+      summary: Generatate a client invitation token
+  /validateToken/:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Client Data
+        in: body
+        name: admin
+        required: true
+        schema:
+          $ref: '#/definitions/client.Client'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/client.ValidateToken'
+      security:
+      - ApiKeyAuth: []
+      summary: Validate client invitation token
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
