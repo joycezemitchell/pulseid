@@ -13,7 +13,8 @@ var (
 func StartApplication() {
 	// Create schema
 	schema.CreateSchema()
-
+	
+	// Map url
 	mapUrls()
 
 	log.Println("about to start the application...")
