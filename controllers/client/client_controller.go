@@ -27,7 +27,7 @@ func ValidateToken(c *gin.Context) {
 		return
 	}
 
-
+	// Request client
 	client, err := services.ClientService.ValidateToken(*request)
 	if err != nil {
 		c.JSON(http.StatusBadRequest,err)
